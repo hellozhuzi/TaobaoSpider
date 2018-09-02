@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.zfz.android.taobaospider">
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <application
+            android:name=".MyApplication"
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme">
+        <activity
+                android:name=".MainActivity"
+                android:label="@string/app_name"
+                android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <!--一像素守护 Activity-->
+        <activity
+                android:name=".DaemonService.VMDaemonActivity"
+                android:configChanges="keyboardHidden|orientation|screenSize|navigation|keyboard"
+                android:excludeFromRecents="true"
+                android:exported="false"
+                android:finishOnTaskLaunch="false"
+                android:launchMode="singleInstance"
+                android:process=":daemon"
+                android:theme="@style/AppTheme"/>
+        <!--接收守护进程发送广播，用来唤醒核心进程的广播接收器-->
+        <receiver
+                android:name=".DaemonService.receiver.VMWakeReceiver"
+                android:enabled="true"
+                android:exported="false">
+            <intent-filter>
+                <action android:name="com.vmloft.develop.daemon.wake"/>
+                <action android:name="android.intent.action.SCREEN_OFF"/>
+                <action android:name="android.intent.action.USER_PRESENT"/>
+            </intent-filter>
+        </receiver>
+        <!--守护进程-->
+        <service
+                android:name=".DaemonService.VMDaemonService"
+                android:enabled="true"
+                android:exported="false"
+                android:process=":daemon"/>
+        <!--核心进程-->
+        <service
+                android:name=".DaemonService.VMCoreService"
+                android:enabled="true"
+                android:exported="false"/>
+        <service
+                android:name=".DaemonService.VMCoreService$CoreInnerService"
+                android:enabled="true"
+                android:exported="false"/>
+    </application>
+
+</manifest>
