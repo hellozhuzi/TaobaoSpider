@@ -34,7 +34,6 @@ public class TaobaoTklGetStoreInfo extends BaseCase{
 				if(shop!=null){
 					shop.put("shopid", shopId);
 					pushToDB(shop);
-					pushToDB2(shop);
 				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -165,35 +164,9 @@ public class TaobaoTklGetStoreInfo extends BaseCase{
 			String shopname = shopItem.getString("shopname");
 			Util.PrintExecLog(1,"get info shoptel:"+shoptel+" name:"+shopname);
 			String encodename = java.net.URLEncoder.encode(shopname, "UTF-8");
-			url = "http://120.132.26.247/spider/putshopinfo.php?shopid="+shopid
+			url = url+"?shopid="+shopid
 					+"&shoptel="+shoptel+"&shopname="+encodename;
 			Util.PrintExecLog(1,"url:"+url);
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		HttpGet request = new HttpGet(url);
-		HttpResponse response;
-		try {
-			response = client.execute(request);		
-		    HttpEntity httpEntity = response.getEntity();
-			String result = EntityUtils.toString(httpEntity);					
-		}catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	private void pushToDB2(JSONObject shopItem) {
-		HttpClient client = new DefaultHttpClient();
-		String url = "";
-		try {
-			int shopid = shopItem.getInt("shopid");
-			String shoptel = shopItem.getString("shoptel");
-			String shopname = shopItem.getString("shopname");
-			Util.PrintExecLog(1,"get info shoptel:"+shoptel+" name:"+shopname);
-			String encodename = java.net.URLEncoder.encode(shopname, "UTF-8");			
-			url = "https://www.ubibi.cn/api/v1/ubibi/spider_shop_info?shopid="+shopid
-					+"&shoptel="+shoptel+"&shopname="+encodename;
-			Util.PrintExecLog(1,"ddd");
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

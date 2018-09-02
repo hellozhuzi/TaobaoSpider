@@ -7,5 +7,5 @@ app:需要root权限的apk。启动后将脚本拷贝至临时目录。点击启
     注意：1、apk如果稳定运行，需要停驻后台<br>
          2、root权限<br>
 scripts：uiautomator脚本，需要单独编译，编译完后，放入app的asserts目录。<br>
-
+		这部分编译环境比较难配置，需要学习uiautomator部分脚本知识<br>
 注：此套框架提供了一个思路,单独的手机上就可以自动运行脚本，启动运行其他apk
