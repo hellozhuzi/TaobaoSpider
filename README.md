@@ -1,6 +1,5 @@
-====
-手机端淘宝爬虫
-# TaobaoSpider
+
+# TaobaoSpider  手机端淘宝爬虫
 安卓apk自动调用手机端脚本操作其他软件<br>
 <img width="300" height="800" src="https://github.com/hellozhuzi/TaobaoSpider/blob/master/pic/Screenshot_1535678911.png"><br>
 app:需要root权限的apk。启动后将脚本拷贝至临时目录。点击启动则开始运行脚本<br>
